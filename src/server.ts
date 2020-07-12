@@ -115,17 +115,15 @@ app.post("/users/:username/todos", (req, res) => {
   db.close();
 });
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 app.get("/", (req, res) => {
   res.send("Home directory");
 });
 
-app.listen(port, (err) => {
-  if (err) {
-    return console.error(err);
-  }
-  return console.log(`server is listening on ${port}`);
-});
+app.listen(port);
+
+console.log(`server is listening on ${port}`);
+
 
 
 function initDb() {

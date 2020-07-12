@@ -97,16 +97,12 @@ app.post("/users/:username/todos", function (req, res) {
     res.send("Inserted");
     db.close();
 });
-var port = 4000;
+var port = process.env.PORT || 4000;
 app.get("/", function (req, res) {
     res.send("Home directory");
 });
-app.listen(port, function (err) {
-    if (err) {
-        return console.error(err);
-    }
-    return console.log("server is listening on " + port);
-});
+app.listen(port);
+console.log("server is listening on " + port);
 function initDb() {
     var db = new sqlite3_1.default.Database("TodoDB.db");
     db.serialize(function () {
